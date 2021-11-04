@@ -1,7 +1,17 @@
-import '../styles/globals.css'
+import "../styles/globals.css";
+import { Web3ReactProvider } from "@web3-react/core";
+import Web3 from "web3";
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+function getWeb3Library(provider) {
+  return new Web3(provider);
 }
 
-export default MyApp
+function MyApp({ Component, pageProps }) {
+  return (
+    <Web3ReactProvider getLibrary={getWeb3Library}>
+      <Component {...pageProps} />
+    </Web3ReactProvider>
+  );
+}
+
+export default MyApp;
